@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "dev": "APIKEY=redish101pro GITHUB_USER=Redish10 deno run --watch --allow-all main.ts"
+  }
+}
