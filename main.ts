@@ -26,6 +26,7 @@ class FmtResponse<T> {
       status: this.code,
       headers: {
         "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     });
   }
