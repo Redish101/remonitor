@@ -1,6 +1,5 @@
 const apikey = Deno.env.get("APIKEY");
 const githubUser = Deno.env.get("GITHUB_USER");
-const githubApiKey = Deno.env.get("GITHUB_API_KEY");
 
 class FmtResponse<T> {
   private code: number = 200;
@@ -46,9 +45,6 @@ const handler = async (req: Request) => {
     const githubRes = await fetch(
       `https://api.github.com/users/${githubUser}/events`,
       {
-        headers: {
-          "Authorization": "Bearer " + githubApiKey,
-        }
       }
     );
     const githubData = await githubRes.json();
