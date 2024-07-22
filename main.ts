@@ -47,7 +47,7 @@ const handler = async (req: Request) => {
     );
     const githubData = await githubRes.json();
     const githubEventTime = new Date(githubData[0].created_at);
-    const githubEventTimeDiff = now.getTime() - githubEventTime.getTime();
+    const lastestGithubEventTimeDiff = now.getTime() - githubEventTime.getTime();
 
     const latestReMonitorEventTimeStr = (
       await kv.get(["latestReMonitorEventTime"])
@@ -63,7 +63,7 @@ const handler = async (req: Request) => {
 
     return new FmtResponse({
       data: {
-        githubEventTimeDiff,
+        lastestGithubEventTimeDiff,
         latestReMonitorEventTimeDiff,
       },
     }).json();
