@@ -1,5 +1,4 @@
 const apikey = Deno.env.get("APIKEY");
-const githubUser = Deno.env.get("GITHUB_USER");
 
 class FmtResponse<T> {
   private code: number = 200;
@@ -42,16 +41,6 @@ const handler = async (req: Request) => {
   const now = new Date();
 
   if (pathname == "/") {
-    const githubRes = await fetch(
-      `https://api.github.com/users/${githubUser}/events`,
-      {
-      }
-    );
-    const githubData = await githubRes.json();
-    const githubEventTime = new Date(githubData[0].created_at);
-    const lastestGithubEventTimeDiff =
-      now.getTime() - githubEventTime.getTime();
-
     const latestReMonitorEventTimeStr = (
       await kv.get(["latestReMonitorEventTime"])
     ).value as string;
@@ -65,10 +54,7 @@ const handler = async (req: Request) => {
       now.getTime() - latestReMonitorEventTime.getTime();
 
     return new FmtResponse({
-      data: {
-        lastestGithubEventTimeDiff,
-        latestReMonitorEventTimeDiff,
-      },
+      data: latestReMonitorEventTimeDiff,
     }).json();
   }
 
