@@ -27,6 +27,8 @@ class FmtResponse<T> {
       headers: {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, apikey",
       },
     });
   }
